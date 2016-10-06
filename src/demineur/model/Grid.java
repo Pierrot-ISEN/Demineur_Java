@@ -5,16 +5,16 @@
  */
 package demineur.model;
 public class Grid {
-    private int lenght;
+    private int length;
     private int width;
     private Cell cells[][];
     
     public int getLenght() {
-        return lenght;
+        return length;
     }
 
     public void setLenght(int lenght) {
-        this.lenght = lenght;
+        this.length = lenght;
     }
 
     public int getWidth() {
@@ -38,20 +38,20 @@ public class Grid {
         int x;
         int y;
         
-        this.lenght = taille;
+        this.length = taille;
         this.width = taille;
-        this.cells = new Cell[this.lenght][this.width];
+        this.cells = new Cell[this.length][this.width];
         
         for (x=0;x<taille;x++) {
             for (y=0;y<taille-1;y++) {               
-                this.dalle[x][y] = new Cell(x,y);
+                this.cells[x][y] = new Cell(x,y);
 //                this.dalle[x][y].addObserver(this);
             }
-        }
+        
     }
     
-    public Grid(int lenght,int width) {
-        this.lenght = lenght;
+    public Grid(int length,int width) {
+        this.length = length;
         this.width = width;
     }
     
