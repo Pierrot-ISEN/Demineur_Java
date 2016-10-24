@@ -4,6 +4,7 @@ public class Cell {
 
     private int x;
     private int y;
+    private int nbNeighbour;
     private EtatMasked etatMasked;
     private EtatReveals etatReveals;
     public boolean shown;
@@ -22,6 +23,14 @@ public class Cell {
 
     public void setY(int y) {
         this.y = y;
+    }
+    
+    public int getNbNeighbour() {
+        return nbNeighbour;
+    }
+
+    public void setNbNeighbour(int nbNeighbour) {
+        this.nbNeighbour = nbNeighbour;
     }
 
     public EtatMasked getEtatMasked() {
