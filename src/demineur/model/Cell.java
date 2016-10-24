@@ -3,7 +3,8 @@ package demineur.model;
 public class Cell {
     private int x;
     private int y;
-    private int neighborgsNumber;
+    private EtatMasked etatMasked;
+    private EtatReveals etatReveals;
 
     public int getX() {
         return x;
@@ -21,17 +22,34 @@ public class Cell {
         this.y = y;
     }
 
-    public int getNeighborgsNumber() {
-        return neighborgsNumber;
+    public EtatMasked getEtatMasked() {
+        return etatMasked;
     }
 
-    public void setNeighborgsNumber(int neighborgsNumber) {
-        this.neighborgsNumber = neighborgsNumber;
+    public void setEtatMasked(EtatMasked etatMasked) {
+        this.etatMasked = etatMasked;
     }
 
+    public void setEtatReveals(EtatReveals etatReveals) {
+        this.etatReveals = etatReveals;
+    }
+
+    public EtatReveals getEtatReveals() {
+        return etatReveals;
+    }
+    
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
+        //this.etatMasked=EtatMasked.HASH;
+        //this.etatReveals=EtatReveals.MINE;
+        
     }
+    
+    @Override
+    public String toString(){
+       return this.etatMasked.toString();
+    }
+
     
 }
