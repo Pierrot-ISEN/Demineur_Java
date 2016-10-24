@@ -94,6 +94,7 @@ public class Grid {
             }
 
         }
+        this.mooreNeighborhood();
 
     }
 
@@ -101,17 +102,28 @@ public class Grid {
         this(taille, taille, nbMaskMine);
     }
 
-    /* int mooreNeighborhood(int nbNeighbour) {
+    public void mooreNeighborhood() {
+        int nbNeighbour = 0;
         for (int x = 0; x < this.length; x++) {
             for (int y = 0; y < this.width; y++) {
-                if (this.cells[x][y].getEtatReveals() == EtatReveals.MINE) {
-                    this.cells[x-1][y-1;
+                if (this.cells[x][y].getEtatReveals() == EtatReveals.EMPTY) {
+                    for (int i = x - 1; i <= x + 1; i++) {
+                        for (int j = y - 1; j <= y + 1; j++) {
+                            if (i > -1 && i < this.length && j > -1 && j < this.width) {
+                                if (this.cells[i][j].getEtatReveals() == EtatReveals.MINE) {
+                                    nbNeighbour++;
+                                }
+                            }
+                        }
+                    }
+
                 }
+                this.cells[x][y].setNbNeighbour(nbNeighbour);
+                nbNeighbour = 0;
             }
         }
-        return nbNeighbour;
-    } */
-    
+    }
+
     @Override
     public String toString() {
         int x, y;

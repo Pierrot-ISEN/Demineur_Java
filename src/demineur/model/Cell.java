@@ -24,7 +24,7 @@ public class Cell {
     public void setY(int y) {
         this.y = y;
     }
-    
+
     public int getNbNeighbour() {
         return nbNeighbour;
     }
@@ -59,10 +59,14 @@ public class Cell {
 
     @Override
     public String toString() {
+        //this.shown = true;
         if (this.shown == true) {
-            return this.etatReveals.toString();
-        }
-        else {
+            if (this.nbNeighbour == 0) {
+                return this.etatReveals.toString();
+            }else{
+                return Integer.toString(this.nbNeighbour);
+            }
+        } else {
             return this.etatMasked.toString();
         }
     }
