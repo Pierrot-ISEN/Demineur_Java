@@ -5,6 +5,8 @@
  */
 package demineur.view;
 
+import demineur.model.Grid;
+
 /**
  *
  * @author pierrot
@@ -12,6 +14,12 @@ package demineur.view;
 public class Demineur {
 
     public static void main(String[] args) {
+        Grid g = new Grid(3,3);
+        System.out.print(g);
+        
+        
+  
+        
 
     }
     
