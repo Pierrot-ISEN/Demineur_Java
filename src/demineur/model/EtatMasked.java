@@ -20,7 +20,11 @@ public enum EtatMasked {
         this.label = label;
     }
 
-
+    @Override
+    public String toString(){
+       return this.label;
+    }
+    
     
     public static EtatMasked getEtatMasked(String label) {
         switch (label) {

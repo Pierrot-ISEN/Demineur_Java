@@ -6,6 +6,8 @@
 package demineur.view;
 
 import demineur.model.Grid;
+import demineur.controller.GameControls;
+import java.util.Scanner;
 
 /**
  *
@@ -14,11 +16,14 @@ import demineur.model.Grid;
 public class Demineur {
 
     public static void main(String[] args) {
-        Grid g = new Grid(3,3);
-        System.out.print(g);
-        
-        
-  
+        Grid g = new Grid(3,7,3);
+        Scanner scan = new Scanner(System.in);
+        String commande = scan.toString();
+        while (true) {
+            System.out.print(g);
+            commande = scan.nextLine();
+            GameControls.command(commande,g);
+        }
         
 
     }

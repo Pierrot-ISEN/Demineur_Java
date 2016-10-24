@@ -48,54 +48,57 @@ public class Grid {
         this.nbMaskMine = nbMaskMine;
     }
 
-    public Grid(int taille, int nbMaskMine) {
+    public Grid(int length, int width, int nbMaskMine) {
 
         int x;
         int y;
-/*        Random rnd = new Random();
+        /*        Random rnd = new Random();
         int nbRand1 = rnd.nextInt(this.length);
         int nbRand2 = rnd.nextInt(this.width);*/
-        double rnd1 = Math.random()*this.length;
-        double rnd2 = Math.random()*this.width;
-        
+        double rnd1 = Math.random() * this.length;
+        double rnd2 = Math.random() * this.width;
 
-        this.length = taille;
+        this.length = length;
         if (this.length < 0) {
             this.length = -this.length;
         } else if (this.length == 0) {
             this.length = DEFAULT_COTE;
         }
 
-        this.width = taille;
+        this.width = width;
         if (this.width < 0) {
             this.width = -this.width;
         } else if (this.width == 0) {
             this.width = DEFAULT_COTE;
         }
+
         this.nbMaskMine = nbMaskMine;
 
         this.cells = new Cell[this.length][this.width];
         //create grid with cell
-        for (x = 0; x < taille; x++) {
-            for (y = 0; y < taille; y++) {
+        for (x = 0; x < length; x++) {
+            for (y = 0; y < width; y++) {
                 this.cells[x][y] = new Cell(x, y);
                 this.cells[x][y].setEtatMasked(EtatMasked.HASH);
+                this.cells[x][y].setEtatReveals(EtatReveals.EMPTY);
             }
         }
         for (int i = 0; i < nbMaskMine; i++) {
-            /*if(this.cells[nbRand1][nbRand2]!= this.cells[nbRand1][nbRand2].getEtatReveals("x")){
-                this.cells[nbRand1][nbRand2].setEtatReveals(EtatReveals.MINE);
-            } else {
-            }*/
             while (nbMaskMine != 0) {
-                this.cells[(int)rnd1][(int)rnd2].setEtatReveals(EtatReveals.MINE);
-                rnd1 = Math.random()*this.length;
-                rnd2 = Math.random()*this.width;
-                nbMaskMine--;
+                if (this.cells[(int) rnd1][(int) rnd2].getEtatReveals() != EtatReveals.MINE) {
+                    this.cells[(int) rnd1][(int) rnd2].setEtatReveals(EtatReveals.MINE);
+                    nbMaskMine--;
+                }
+                rnd1 = Math.random() * this.length;
+                rnd2 = Math.random() * this.width;
             }
 
         }
 
+    }
+
+    public Grid(int taille, int nbMaskMine) {
+        this(taille, taille, nbMaskMine);
     }
 
     @Override
