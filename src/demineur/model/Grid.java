@@ -101,6 +101,17 @@ public class Grid {
         this(taille, taille, nbMaskMine);
     }
 
+    /* int mooreNeighborhood(int nbNeighbour) {
+        for (int x = 0; x < this.length; x++) {
+            for (int y = 0; y < this.width; y++) {
+                if (this.cells[x][y].getEtatReveals() == EtatReveals.MINE) {
+                    this.cells[x-1][y-1;
+                }
+            }
+        }
+        return nbNeighbour;
+    } */
+    
     @Override
     public String toString() {
         int x, y;
