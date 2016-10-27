@@ -1,13 +1,15 @@
 package demineur.model;
 
-public class Cell {
+import java.util.Observable;
+
+public class Cell extends Observable  {
 
     private int x;
     private int y;
     private int nbNeighbour;
     private EtatMasked etatMasked;
-    private EtatReveals etatReveals;
-    public boolean shown;
+    private EtatRevealed etatRevealed;
+    private boolean shown;
 
     public int getX() {
         return x;
@@ -39,22 +41,33 @@ public class Cell {
 
     public void setEtatMasked(EtatMasked etatMasked) {
         this.etatMasked = etatMasked;
+        setChanged();
+        notifyObservers();
     }
 
-    public void setEtatReveals(EtatReveals etatReveals) {
-        this.etatReveals = etatReveals;
+    public void setEtatRevealed(EtatRevealed etatRevealed) {
+        this.etatRevealed = etatRevealed;
     }
 
-    public EtatReveals getEtatReveals() {
-        return etatReveals;
+    public EtatRevealed getEtatRevealed() {
+        return etatRevealed;
+    }
+
+    public boolean isShown() {
+        return shown;
+    }
+
+    public void setShown(boolean shown) {
+        this.shown = shown;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public Cell(int x, int y) {
         this.x = x;
         this.y = y;
         //this.etatMasked=EtatMasked.HASH;
-        //this.etatReveals=EtatReveals.MINE;
-
+        //this.etatRevealed=EtatRevealed.MINE;
     }
 
     @Override
@@ -62,7 +75,7 @@ public class Cell {
         //this.shown = true;
         if (this.shown == true) {
             if (this.nbNeighbour == 0) {
-                return this.etatReveals.toString();
+                return this.etatRevealed.toString();
             }else{
                 return Integer.toString(this.nbNeighbour);
             }

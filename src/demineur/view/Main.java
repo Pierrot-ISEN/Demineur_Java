@@ -7,25 +7,27 @@ package demineur.view;
 
 import demineur.model.Grid;
 import demineur.controller.GameControls;
+import demineur.view.GraphicalGridView;
+import demineur.view.GraphicalCellView;
 import java.util.Scanner;
 
 /**
  *
  * @author pierrot
  */
-public class Demineur {
+public class Main {
 
     public static void main(String[] args) {
-        Grid g = new Grid(3,7,3);
-        Scanner scan = new Scanner(System.in);
+        int taille = 9;
+        Grid g = new Grid(taille,taille);
+        GraphicalGridView window = new GraphicalGridView(g);
+        
+        /*Scanner scan = new Scanner(System.in);
         String commande = scan.toString();
-        while (true) {
+        
             System.out.print(g);
             commande = scan.nextLine();
-            GameControls.command(commande,g);
-        }
-        
-
+            GameControls.command(commande,g);*/
     }
-    
+
 }

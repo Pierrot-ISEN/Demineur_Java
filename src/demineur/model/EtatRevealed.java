@@ -9,13 +9,13 @@ package demineur.model;
  *
  * @author root
  */
-public enum EtatReveals {
+public enum EtatRevealed {
     EMPTY("."),
     MINE("x");
 
     private final String label;
 
-    private EtatReveals(String label) {
+    private EtatRevealed(String label) {
         this.label = label;
     }
     
@@ -24,12 +24,12 @@ public enum EtatReveals {
         return this.label;
     }
 
-    public  EtatReveals getEtatReveals(String label) {
+    public  EtatRevealed getEtatRevealed(String label) {
         switch (label) {
             case ".":
-                return EtatReveals.EMPTY;
+                return EtatRevealed.EMPTY;
             case "x":
-                return EtatReveals.MINE;
+                return EtatRevealed.MINE;
             default:
                 return null;
 

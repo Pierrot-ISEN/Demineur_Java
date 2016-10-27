@@ -12,7 +12,7 @@ package demineur.model;
 public enum EtatMasked {
     QMARK("?"),
     EXMARK("!"),
-    HASH("#");
+    HASH("");
 
     public final String label;
 
@@ -32,7 +32,7 @@ public enum EtatMasked {
                 return EtatMasked.QMARK;
             case "!":
                 return EtatMasked.EXMARK;
-            case "#":
+            case "":
                 return EtatMasked.HASH;
             default:
                 return null;
