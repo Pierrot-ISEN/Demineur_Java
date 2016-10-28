@@ -10,7 +10,7 @@ import demineur.view.GraphicalGridView;
 /* Jframe.dispose*/
 public class GameControls {
 
-    public static void command(String entry, Grid grid) {
+    /* static void command(String entry, Grid grid) {
 
         String tab[] = entry.split(" ");
 
@@ -63,8 +63,13 @@ public class GameControls {
         }
 
     }
+    */
 
     public static void leftClick(Cell cell, GraphicalGridView grid) {
+        if (grid.getModel().isFristClick()) {
+            grid.getModel().setMines();
+            grid.getModel().setFristClick(false);
+        }
         if (cell.getEtatRevealed() == EtatRevealed.MINE) {
             System.out.println("---BOOOOOOOOOM---");
             cell.setShown(true);

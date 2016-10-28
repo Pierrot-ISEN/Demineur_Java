@@ -18,7 +18,7 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int taille = 9;
+        int taille = 12;
         Grid g = new Grid(taille,taille);
         GraphicalGridView window = new GraphicalGridView(g);
         

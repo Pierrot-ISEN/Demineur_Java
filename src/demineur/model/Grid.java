@@ -13,6 +13,7 @@ public class Grid extends Observable {
     private int width;
     private int height;
     private Cell cells[][];
+    private boolean fristClick;
     private int nbMaskMine;
     private static final int DEFAULT_COTE = 10;
     private static final int DEFAULT_MINE = 5;
@@ -76,16 +77,23 @@ public class Grid extends Observable {
         this.setChanged();
         this.notifyObservers();
     }
+
+    public boolean isFristClick() {
+        return fristClick;
+    }
+
+    public void setFristClick(boolean fristClick) {
+        this.fristClick = fristClick;
+    }
     
     public Grid(int length, int height, int nbMaskMine) {
 
         int x;
         int y;
+        this.fristClick = true;
         /*        Random rnd = new Random();
         int nbRand1 = rnd.nextInt(this.width);
         int nbRand2 = rnd.nextInt(this.height);*/
-        double rnd1 = Math.random() * this.width;
-        double rnd2 = Math.random() * this.height;
 
         this.width = length;
         if (this.width < 0) {
@@ -112,6 +120,18 @@ public class Grid extends Observable {
                 this.cells[x][y].setEtatRevealed(EtatRevealed.EMPTY);
             }
         }
+    }
+
+    public Grid(int taille, int nbMaskMine) {
+        this(taille, taille, nbMaskMine);
+    }
+
+    public void setMines(){
+        
+        double rnd1 = Math.random() * this.width;
+        double rnd2 = Math.random() * this.height;
+        int nbMaskMine = this.nbMaskMine;
+        
         for (int i = 0; i < nbMaskMine; i++) {
             while (nbMaskMine != 0) {
                 if (this.cells[(int) rnd1][(int) rnd2].getEtatRevealed() != EtatRevealed.MINE) {
@@ -121,16 +141,10 @@ public class Grid extends Observable {
                 rnd1 = Math.random() * this.width;
                 rnd2 = Math.random() * this.height;
             }
-
         }
         this.mooreNeighborhood();
-
     }
-
-    public Grid(int taille, int nbMaskMine) {
-        this(taille, taille, nbMaskMine);
-    }
-
+    
     public void mooreNeighborhood() {
         int nbNeighbour = 0;
         for (int x = 0; x < this.width; x++) {

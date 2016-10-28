@@ -7,6 +7,8 @@ package demineur.view;
 import javax.swing.JButton;
 import demineur.model.Cell;
 import demineur.controller.MyMouseListener;
+import java.awt.Color;
+import java.awt.Font;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -47,6 +49,7 @@ public class GraphicalCellView extends JButton implements Observer{
     
     public GraphicalCellView(Cell cell,GraphicalGridView grid) {
         this.setText("");
+        this.setFont(new Font("Arial", Font.PLAIN, 25));
         this.myModel = cell;
         myModel.addObserver(this);
         this.addMouseListener(new MyMouseListener(grid));
