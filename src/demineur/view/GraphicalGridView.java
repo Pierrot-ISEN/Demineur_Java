@@ -84,27 +84,48 @@ public class GraphicalGridView extends JPanel implements Observer {
         menu.add(item2);
         menuBar.add(menu);
         frame.setJMenuBar(menuBar);
-
+        
+        JPanel centre = new JPanel();
+        centre.setLayout(new GridLayout(width, height));
+        
         frame.setLayout(
-                new GridLayout(width, height, 0, 0)
+            new BorderLayout(5,5)
         );
+        /*frame.setLayout(
+                new GridLayout(width, height, 0, 0),
+                BorderLayout.CENTER
+        );*/
+        
+        /*frame.setLayout(
+            new GridLayout(width-15, height-15, 0, 0)
+        ); */
+        frame.add(
+                centre,
+                BorderLayout.CENTER
+        );
+        
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
                 this.JCells[i][j] = new GraphicalCellView(model.getCell(i, j), this);
-                frame.add(this.JCells[i][j]);
+                centre.add(this.JCells[i][j]);
             }
         }
+        
+        frame.add(
+                new StatusBar(),
+                BorderLayout.SOUTH
+        );
 
         this.addMouseListener(new MyMouseListener(this));
         this.model.addObserver(this);
-        frame.setSize(width * 75, height * 75);
+        frame.setSize(width * 65, height * 65);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         menuBar.setVisible(true);
     }
 
     public void maj() {
-
+        System.out.print("YOLOOOOOO Beach");
     }
 
     @Override
