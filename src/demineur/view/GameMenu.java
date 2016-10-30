@@ -7,8 +7,7 @@ package demineur.view;
 
 import demineur.controller.MouseListenerNew;
 import demineur.controller.MyActionListener;
-import demineur.model.Grid;
-import java.awt.event.ActionListener;
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -20,9 +19,9 @@ import javax.swing.JMenuItem;
 public class GameMenu extends JMenuBar {
 
     private GraphicalGridView frame;
+    private JFrame gameFrame;
     private CustomGameFrame custom;
     private NewGameFrame newcustom;
-    private Grid grid;
 
     public CustomGameFrame getCustom() {
         return custom;
@@ -46,9 +45,9 @@ public class GameMenu extends JMenuBar {
 
     public GameMenu(GraphicalGridView frame) {
         this.frame = frame;
-        
-        this.custom=new CustomGameFrame();
-        this.newcustom= new NewGameFrame();
+        this.gameFrame = this.frame.getFrame();
+        this.custom=new CustomGameFrame(this.gameFrame);
+        this.newcustom= new NewGameFrame(this.gameFrame);
         JMenu menuGame = new JMenu("Game");
         JMenu menuNew = new JMenu("New");
         this.add(menuGame);

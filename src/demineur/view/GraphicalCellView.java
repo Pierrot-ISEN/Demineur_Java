@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package demineur.view;
+
 import javax.swing.JButton;
 import demineur.model.Cell;
 import demineur.controller.MyMouseListener;
@@ -12,17 +13,12 @@ import java.awt.Font;
 import java.util.Observable;
 import java.util.Observer;
 
+public class GraphicalCellView extends JButton implements Observer {
 
-/**
- *
- * @author root
- */
-public class GraphicalCellView extends JButton implements Observer{
-    
     private Cell myModel;
     private int posx;
     private int posy;
-
+    
     public Cell getMyModel() {
         return this.myModel;
     }
@@ -46,23 +42,26 @@ public class GraphicalCellView extends JButton implements Observer{
     public void setPosy(int posy) {
         this.posy = posy;
     }
-    
-    public GraphicalCellView(Cell cell,GraphicalGridView grid) {
+
+    public GraphicalCellView(Cell cell, GraphicalGridView grid) {
         this.setText("");
         this.setFont(new Font("Arial", Font.PLAIN, 25));
         this.myModel = cell;
         myModel.addObserver(this);
         this.addMouseListener(new MyMouseListener(grid));
-    } 
+    }
 
-    public void cellChanged(){
+    public void cellChanged() {
         this.setEnabled(!this.getMyModel().isShown());
         this.setText(this.myModel.toString());
     }
-    
+
     @Override
     public void update(Observable o, Object arg) {
-        cellChanged();
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            cellChanged();
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        }
     }
 }

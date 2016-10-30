@@ -16,18 +16,13 @@ import java.util.Scanner;
  * @author pierrot
  */
 public class Main {
-
+    
     public static void main(String[] args) {
-        int taille = 12;
-        Grid g = new Grid(taille,taille);
+        
+        int taille = 10;
+        Grid g = new Grid(taille,10);
         GraphicalGridView window = new GraphicalGridView(g);
-        
-        /*Scanner scan = new Scanner(System.in);
-        String commande = scan.toString();
-        
-            System.out.print(g);
-            commande = scan.nextLine();
-            GameControls.command(commande,g);*/
+       
     }
 
 }

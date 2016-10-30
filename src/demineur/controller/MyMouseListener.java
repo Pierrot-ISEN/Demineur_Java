@@ -10,11 +10,12 @@ import javax.swing.JFrame;
 
 public class MyMouseListener implements MouseListener {
 // MouseListener interface implementation
+
     private GraphicalGridView frame;
 
     public MyMouseListener() {
     }
-    
+
     public MyMouseListener(GraphicalGridView frame) {
         this.frame = frame;
     }
@@ -37,18 +38,20 @@ public class MyMouseListener implements MouseListener {
     public void mousePressed(MouseEvent e) {
         //command("d");
         GraphicalCellView button;
-       
+        
         if (e.getModifiers() == InputEvent.BUTTON1_MASK) {
             System.out.println("Click gauche");
             if (e.getSource() instanceof GraphicalCellView) {
-                button = (GraphicalCellView)e.getSource();
-                GameControls.leftClick(button.getMyModel(),this.frame);
+                button = (GraphicalCellView) e.getSource();
+                GameControls.leftClick(button.getMyModel(), this.frame);
             }
- 
+
         } else if (e.getModifiers() == InputEvent.BUTTON3_MASK) {
-            System.out.println("Click droit");    
-            button = (GraphicalCellView)e.getSource();
-                GameControls.mark(button);
+            System.out.println("Click droit");
+            button = (GraphicalCellView) e.getSource();
+            if (button.isEnabled()) {
+                GameControls.rightClick(button, this.frame.getModel());
+            }
         }
     }
 

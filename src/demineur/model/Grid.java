@@ -7,6 +7,7 @@ package demineur.model;
 
 import java.util.Observable;
 import java.util.Random;
+import javax.swing.Timer;
 
 public class Grid extends Observable {
 
@@ -14,10 +15,12 @@ public class Grid extends Observable {
     private int height;
     private Cell cells[][];
     private boolean fristClick;
+    private int nbClick;
     private int nbMaskMine;
+    private int nbMarkedCells = 0;
     private static final int DEFAULT_COTE = 10;
     private static final int DEFAULT_MINE = 5;
-    private int notif;
+    //Timer timer = new Timer();
 
     public int getWidth() {
         return width;
@@ -39,17 +42,22 @@ public class Grid extends Observable {
         notifyObservers();
     }
 
-    public void notif(){
+    public void notif() {
         setChanged();
         notifyObservers();
     }
-    
+
     public Cell[][] getCells() {
         return cells;
     }
-    
+
     public Cell getCell(int i, int j) {
         return this.cells[i][j];
+    }
+
+    public void cellChanged() {
+        setChanged();
+        notifyObservers();
     }
 
     public void setCells(Cell[][] cells) {
@@ -68,14 +76,26 @@ public class Grid extends Observable {
         this.nbMaskMine = nbMaskMine;
     }
 
-    public int getNotif() {
-        return notif;
+    public int getNbMarkedCells() {
+        return nbMarkedCells;
     }
 
-    public void setNotif(int notif) {
-        this.notif++;
-        this.setChanged();
-        this.notifyObservers();
+    public void setNbMarkedCells(int nbMarkedCells) {
+        this.nbMarkedCells = nbMarkedCells;
+        setChanged();
+        notifyObservers();
+    }
+
+    public int getNbClick() {
+        return nbClick;
+    }
+
+    public void incNbClick() {
+        this.nbClick++;
+    }
+
+    public void setNbClick(int nbClick) {
+        this.nbClick = nbClick;
     }
 
     public boolean isFristClick() {
@@ -85,7 +105,7 @@ public class Grid extends Observable {
     public void setFristClick(boolean fristClick) {
         this.fristClick = fristClick;
     }
-    
+
     public Grid(int length, int height, int nbMaskMine) {
 
         int x;
@@ -126,12 +146,12 @@ public class Grid extends Observable {
         this(taille, taille, nbMaskMine);
     }
 
-    public void setMines(){
-        
+    public void setMines() {
+
         double rnd1 = Math.random() * this.width;
         double rnd2 = Math.random() * this.height;
         int nbMaskMine = this.nbMaskMine;
-        
+
         for (int i = 0; i < nbMaskMine; i++) {
             while (nbMaskMine != 0) {
                 if (this.cells[(int) rnd1][(int) rnd2].getEtatRevealed() != EtatRevealed.MINE) {
@@ -144,7 +164,7 @@ public class Grid extends Observable {
         }
         this.mooreNeighborhood();
     }
-    
+
     public void mooreNeighborhood() {
         int nbNeighbour = 0;
         for (int x = 0; x < this.width; x++) {
@@ -165,6 +185,21 @@ public class Grid extends Observable {
                 nbNeighbour = 0;
             }
         }
+    }
+
+    public int statusUpdate() {
+        int nbMarkedCells = 0;
+        for (int x = 0; x < this.width; x++) {
+            for (int y = 0; y < this.height; y++) {
+                if (!this.cells[x][y].isShown()) {
+                    if (this.cells[x][y].getEtatMasked() == EtatMasked.EXMARK) {
+                        nbMarkedCells++;
+                    }
+                }
+            }
+        }
+        this.nbMarkedCells = nbMarkedCells;
+        return this.nbMaskMine - nbMarkedCells;
     }
 
     @Override

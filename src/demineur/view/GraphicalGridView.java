@@ -18,6 +18,7 @@ import java.util.Observer;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.Timer;
 
 /**
  *
@@ -29,13 +30,10 @@ public class GraphicalGridView extends JPanel implements Observer {
     private int height;
     private Grid model;
     private GraphicalCellView JCells[][];
-
+    StatusBar statusBar;
     JFrame frame = new JFrame("Demineur");
-    JMenuBar menuBar = new JMenuBar();
-    JMenu menu = new JMenu("Partie");
-    JMenuItem item1 = new JMenuItem();
-    JMenuItem item2 = new JMenuItem();
-
+    //Menu menu = new Menu();
+    
     @Override
     public int getWidth() {
         return width;
@@ -74,16 +72,23 @@ public class GraphicalGridView extends JPanel implements Observer {
         this.JCells = JCells;
     }
 
+    public StatusBar getStatusBar() {
+        return statusBar;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+    
+    
+
     public GraphicalGridView(Grid model) {
         this.model = model;
         this.width = model.getWidth();
         this.height = model.getHeight();
         this.JCells = new GraphicalCellView[this.width][this.height];
 
-        menu.add(item1);
-        menu.add(item2);
-        menuBar.add(menu);
-        frame.setJMenuBar(menuBar);
+        frame.setJMenuBar(new GameMenu(this));
         
         JPanel centre = new JPanel();
         centre.setLayout(new GridLayout(width, height));
@@ -110,9 +115,9 @@ public class GraphicalGridView extends JPanel implements Observer {
                 centre.add(this.JCells[i][j]);
             }
         }
-        
+        this.statusBar = new StatusBar(this.model);
         frame.add(
-                new StatusBar(),
+                this.statusBar,
                 BorderLayout.SOUTH
         );
 
@@ -121,7 +126,7 @@ public class GraphicalGridView extends JPanel implements Observer {
         frame.setSize(width * 65, height * 65);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        menuBar.setVisible(true);
+        //this.menu.setVisible(true);
     }
 
     public void maj() {
@@ -130,8 +135,7 @@ public class GraphicalGridView extends JPanel implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        maj();
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
