@@ -13,17 +13,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-/**
- *
- * @author root
- */
+//Creates the Custom menu in a CustomGameFrame
 public class CustomGamePanel extends JPanel implements ChangeListener, ActionListener {
 
     private MyTextField textR, textC, textM;
@@ -33,6 +27,7 @@ public class CustomGamePanel extends JPanel implements ChangeListener, ActionLis
     private static CustomGameFrame customFrame;
     //private Parameters parameters;
 
+    //GETTERS & SETTERS --------------------------------------------------------
     public MyTextField getTextR() {
         return textR;
     }
@@ -56,7 +51,12 @@ public class CustomGamePanel extends JPanel implements ChangeListener, ActionLis
     public MySlider getSliderM() {
         return sliderM;
     }
-
+    
+    //--------------------------------------------------------------------------
+    
+    
+    
+    //CONTRUCTORS---------------------------------------------------------------
     public CustomGamePanel(JFrame gameFrame,NewGameFrame parentFrame) {
         this.parentFrame = parentFrame;
         
@@ -190,7 +190,9 @@ public class CustomGamePanel extends JPanel implements ChangeListener, ActionLis
         textM.addActionListener(this);
 
     }
-
+    //--------------------------------------------------------------------------
+    
+    //On Sliders change...
     @Override
     public void stateChanged(ChangeEvent e) {
         //JSlider slider = (JSlider) e.getSource();
@@ -209,6 +211,7 @@ public class CustomGamePanel extends JPanel implements ChangeListener, ActionLis
         this.parentFrame.getNewCustomPanel().getCustom().setSelected(true);
     }
 
+    //On JText change...
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.parentFrame == null) {
@@ -217,7 +220,7 @@ public class CustomGamePanel extends JPanel implements ChangeListener, ActionLis
                 this.sliderC.setValue(Integer.parseInt(this.textC.getText()));
                 this.sliderM.setValue(Integer.parseInt(this.textM.getText()));
             } catch (Exception ex) {
-                //System.out.println("caractere interdit");
+                //System.out.println("Must enter a number");
                 this.textR.setText(Integer.toString(this.sliderR.getValue()));
                 this.textC.setText(Integer.toString(this.sliderC.getValue()));
                 this.textM.setText(Integer.toString(this.sliderM.getValue()));
@@ -229,7 +232,7 @@ public class CustomGamePanel extends JPanel implements ChangeListener, ActionLis
                 this.sliderM.setValue(Integer.parseInt(this.textM.getText()));
                 this.parentFrame.getNewCustomPanel().getCustom().setSelected(true);
             } catch (Exception ex) {
-                //System.out.println("caractere interdit");
+                //System.out.println("Must enter a number");
                 this.textR.setText(Integer.toString(this.sliderR.getValue()));
                 this.textC.setText(Integer.toString(this.sliderC.getValue()));
                 this.textM.setText(Integer.toString(this.sliderM.getValue()));

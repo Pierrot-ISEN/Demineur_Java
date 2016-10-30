@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package demineur.view;
 
 import java.awt.BorderLayout;
@@ -13,10 +8,6 @@ import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-/**
- *
- * @author root
- */
 public class NewGamePanel extends JPanel implements ActionListener {
 
     private static final JRadioButton beginner = new JRadioButton("Beginner: 10 mines in a 9 x 9 field");

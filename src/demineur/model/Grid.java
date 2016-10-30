@@ -1,13 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package demineur.model;
 
 import java.util.Observable;
-import java.util.Random;
-import javax.swing.Timer;
 
 public class Grid extends Observable {
 
@@ -20,8 +13,8 @@ public class Grid extends Observable {
     private int nbMarkedCells = 0;
     private static final int DEFAULT_COTE = 10;
     private static final int DEFAULT_MINE = 5;
-    //Timer timer = new Timer();
-
+    
+    //GETTERS & SETTERS --------------------------------------------------------
     public int getWidth() {
         return width;
     }
@@ -38,11 +31,6 @@ public class Grid extends Observable {
 
     public void setHeight(int height) {
         this.height = height;
-        setChanged();
-        notifyObservers();
-    }
-
-    public void notif() {
         setChanged();
         notifyObservers();
     }
@@ -105,15 +93,20 @@ public class Grid extends Observable {
     public void setFristClick(boolean fristClick) {
         this.fristClick = fristClick;
     }
-
+    
+    //--------------------------------------------------------------------------
+    
+    //2 parameters Constructor (Square grid)
+    public Grid(int taille, int nbMaskMine) {
+        this(taille, taille, nbMaskMine);
+    }
+    
+    //3 parameters constructor
     public Grid(int length, int height, int nbMaskMine) {
 
         int x;
         int y;
         this.fristClick = true;
-        /*        Random rnd = new Random();
-        int nbRand1 = rnd.nextInt(this.width);
-        int nbRand2 = rnd.nextInt(this.height);*/
 
         this.width = length;
         if (this.width < 0) {
@@ -142,10 +135,7 @@ public class Grid extends Observable {
         }
     }
 
-    public Grid(int taille, int nbMaskMine) {
-        this(taille, taille, nbMaskMine);
-    }
-
+    //Called after first click, randomly sets mines
     public void setMines() {
 
         double rnd1 = Math.random() * this.width;
@@ -164,7 +154,8 @@ public class Grid extends Observable {
         }
         this.mooreNeighborhood();
     }
-
+    
+    //sets the cells' neighboors
     public void mooreNeighborhood() {
         int nbNeighbour = 0;
         for (int x = 0; x < this.width; x++) {
@@ -187,6 +178,7 @@ public class Grid extends Observable {
         }
     }
 
+    //To count the number of marked cells
     public int statusUpdate() {
         int nbMarkedCells = 0;
         for (int x = 0; x < this.width; x++) {
@@ -202,6 +194,7 @@ public class Grid extends Observable {
         return this.nbMaskMine - nbMarkedCells;
     }
 
+    //Console mode
     @Override
     public String toString() {
         int x, y;

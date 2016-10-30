@@ -40,17 +40,17 @@ public class MyMouseListener implements MouseListener {
         GraphicalCellView button;
         
         if (e.getModifiers() == InputEvent.BUTTON1_MASK) {
-            System.out.println("Click gauche");
+            //System.out.println("Click gauche");
             if (e.getSource() instanceof GraphicalCellView) {
                 button = (GraphicalCellView) e.getSource();
                 GameControls.leftClick(button.getMyModel(), this.frame);
             }
 
         } else if (e.getModifiers() == InputEvent.BUTTON3_MASK) {
-            System.out.println("Click droit");
+            //System.out.println("Click droit");
             button = (GraphicalCellView) e.getSource();
             if (button.isEnabled()) {
-                GameControls.rightClick(button, this.frame.getModel());
+                GameControls.rightClick(button, this.frame);
             }
         }
     }

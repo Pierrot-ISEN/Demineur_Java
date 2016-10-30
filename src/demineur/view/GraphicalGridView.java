@@ -1,29 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package demineur.view;
 
 import java.awt.GridLayout;
 import javax.swing.JPanel;
 import javax.swing.JFrame;
 import demineur.model.Grid;
-import demineur.controller.GameControls;
-import demineur.view.GraphicalCellView;
 import demineur.controller.MyMouseListener;
 import java.awt.BorderLayout;
-import java.util.Observable;
-import java.util.Observer;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.Timer;
 
-/**
- *
- * 23 lignes 29 colones
- */
 public class GraphicalGridView extends JPanel {
 
     private int width;

@@ -1,25 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package demineur.view;
 
-import demineur.model.Grid;
 import java.awt.BorderLayout;
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
 
-/**
- *
- * @author root
- */
+//Creates A custom game frame. It can be loaded in an other frame (like new game)
 public class CustomGameFrame extends JFrame {
     
     private JFrame gameFrame;
     
     public CustomGameFrame(JFrame frame) throws HeadlessException {
-        
+            
             this.gameFrame = frame;
             
             this.setSize(500, 220);

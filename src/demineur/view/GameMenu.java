@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package demineur.view;
 
 import demineur.controller.MouseListenerNew;
@@ -12,10 +8,6 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-/**
- *
- * @author root
- */
 public class GameMenu extends JMenuBar {
 
     private GraphicalGridView frame;
