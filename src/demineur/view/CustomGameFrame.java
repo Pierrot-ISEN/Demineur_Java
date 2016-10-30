@@ -16,16 +16,16 @@ import javax.swing.JFrame;
  */
 public class CustomGameFrame extends JFrame {
     
-    private JFrame frame;
+    private JFrame gameFrame;
     
     public CustomGameFrame(JFrame frame) throws HeadlessException {
         
-            this.frame = frame;
+            this.gameFrame = frame;
             
             this.setSize(500, 220);
             this.setLayout(new BorderLayout(5,5));
             this.add(
-                    new CustomGamePanel(this.frame),
+                    new CustomGamePanel(this.gameFrame,this),
                     BorderLayout.CENTER
             );
             this.setResizable(false);

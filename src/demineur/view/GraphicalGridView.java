@@ -24,7 +24,7 @@ import javax.swing.Timer;
  *
  * 23 lignes 29 colones
  */
-public class GraphicalGridView extends JPanel implements Observer {
+public class GraphicalGridView extends JPanel {
 
     private int width;
     private int height;
@@ -96,14 +96,7 @@ public class GraphicalGridView extends JPanel implements Observer {
         frame.setLayout(
             new BorderLayout(5,5)
         );
-        /*frame.setLayout(
-                new GridLayout(width, height, 0, 0),
-                BorderLayout.CENTER
-        );*/
         
-        /*frame.setLayout(
-            new GridLayout(width-15, height-15, 0, 0)
-        ); */
         frame.add(
                 centre,
                 BorderLayout.CENTER
@@ -122,20 +115,9 @@ public class GraphicalGridView extends JPanel implements Observer {
         );
 
         this.addMouseListener(new MyMouseListener(this));
-        this.model.addObserver(this);
-        frame.setSize(width * 65, height * 65);
+        frame.setSize(width * 85, height * 65);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        //this.menu.setVisible(true);
-    }
-
-    public void maj() {
-        System.out.print("YOLOOOOOO Beach");
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

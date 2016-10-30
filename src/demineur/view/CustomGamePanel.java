@@ -26,11 +26,11 @@ import javax.swing.event.ChangeListener;
  */
 public class CustomGamePanel extends JPanel implements ChangeListener, ActionListener {
 
-    private static MyTextField textR, textC, textM;
-    private static MySlider sliderR, sliderC, sliderM;
+    private MyTextField textR, textC, textM;
+    private MySlider sliderR, sliderC, sliderM;
     private static NewGameFrame parentFrame;
     private static JButton validate = new JButton("Validate");
-    private static JFrame frame;
+    private static CustomGameFrame customFrame;
     //private Parameters parameters;
 
     public MyTextField getTextR() {
@@ -57,9 +57,9 @@ public class CustomGamePanel extends JPanel implements ChangeListener, ActionLis
         return sliderM;
     }
 
-    public CustomGamePanel(NewGameFrame parentFrame,JFrame frame) {
+    public CustomGamePanel(JFrame gameFrame,NewGameFrame parentFrame) {
         this.parentFrame = parentFrame;
-        this.frame = frame;
+        
         JPanel left = new JPanel();
         JPanel center = new JPanel();
         JPanel right = new JPanel();
@@ -68,7 +68,7 @@ public class CustomGamePanel extends JPanel implements ChangeListener, ActionLis
         JPanel down = new JPanel();
 
         this.validate = new JButton("Validate");
-        this.validate.addMouseListener(new MyValidationListener(this.frame));
+        this.validate.addMouseListener(new MyValidationListener(gameFrame,this.parentFrame,this));
 
         JLabel row = new JLabel("Rows:");
         JLabel columns = new JLabel("Columns:");
@@ -124,9 +124,8 @@ public class CustomGamePanel extends JPanel implements ChangeListener, ActionLis
         textM.addActionListener(this);
     }
 
-    public CustomGamePanel(JFrame frame) {
-        this.frame = frame;
-        
+    public CustomGamePanel(JFrame gameFrame,CustomGameFrame customFrame) {
+        this.customFrame = customFrame;
         JPanel left = new JPanel();
         JPanel center = new JPanel();
         JPanel right = new JPanel();
@@ -135,7 +134,7 @@ public class CustomGamePanel extends JPanel implements ChangeListener, ActionLis
         JPanel down = new JPanel();
 
         this.validate = new JButton("Validate");
-        this.validate.addMouseListener(new MyValidationListener(this.frame));
+        this.validate.addMouseListener(new MyValidationListener(gameFrame,this.customFrame,this));
 
         JLabel row = new JLabel("Rows:");
         JLabel columns = new JLabel("Columns:");

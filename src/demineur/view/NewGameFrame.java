@@ -29,7 +29,7 @@ public class NewGameFrame extends JFrame {
     public NewGameFrame(JFrame frame) throws HeadlessException {
         
         JLabel select = new JLabel("Select a level:");
-        this.customPanel= new CustomGamePanel(this,frame);
+        this.customPanel= new CustomGamePanel(frame,this);
         this.newCustomPanel= new NewGamePanel(this);
 
         this.setSize(600,376);

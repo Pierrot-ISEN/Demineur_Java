@@ -45,7 +45,7 @@ public class GraphicalCellView extends JButton implements Observer {
 
     public GraphicalCellView(Cell cell, GraphicalGridView grid) {
         this.setText("");
-        this.setFont(new Font("Arial", Font.PLAIN, 25));
+        this.setFont(new Font("Arial", Font.PLAIN, 10));
         this.myModel = cell;
         myModel.addObserver(this);
         this.addMouseListener(new MyMouseListener(grid));

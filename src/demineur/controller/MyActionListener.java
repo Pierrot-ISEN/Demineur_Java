@@ -5,7 +5,7 @@
  */
 package demineur.controller;
 
-import demineur.view.CustomGameFrame;
+import demineur.model.Grid;
 import demineur.view.GameMenu;
 import demineur.view.GraphicalGridView;
 import java.awt.event.ActionEvent;
@@ -28,14 +28,19 @@ public class MyActionListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if ("Quit".equals(e.getActionCommand())) {
-            System.out.println("Selected: " + e.getActionCommand());
-            System.exit(1);
+            this.frame.getFrame().dispose();
         } else if ("Beginner".equals(e.getActionCommand())) {
-            System.out.println("Selected: " + e.getActionCommand());
+            Grid g = new Grid(9,9,10);
+            GraphicalGridView window = new GraphicalGridView(g);
+            this.frame.getFrame().dispose();
         } else if ("Intermediate".equals(e.getActionCommand())) {
-            System.out.println("Selected: " + e.getActionCommand());
+            Grid g = new Grid(16,16,40);
+            GraphicalGridView window = new GraphicalGridView(g);
+            this.frame.getFrame().dispose();
         } else if ("Expert".equals(e.getActionCommand())) {
-            System.out.println("Selected: " + e.getActionCommand());
+            Grid g = new Grid(16,30,99);
+            GraphicalGridView window = new GraphicalGridView(g);
+            this.frame.getFrame().dispose();
         } else if ("Custom".equals(e.getActionCommand())) {
             if (this.gameMenu.getNewcustom().isVisible()) {
                 this.gameMenu.getNewcustom().setVisible(false);
