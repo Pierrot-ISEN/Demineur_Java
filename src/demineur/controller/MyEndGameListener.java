@@ -2,16 +2,16 @@ package demineur.controller;
 
 import demineur.model.Grid;
 import demineur.view.GraphicalGridView;
-import demineur.view.endGameFrame;
+import demineur.view.EndGameFrame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JButton;
 
 public class MyEndGameListener implements MouseListener {
 
-    private endGameFrame frame;
+    private EndGameFrame frame;
     
-    public MyEndGameListener(endGameFrame frame) {
+    public MyEndGameListener(EndGameFrame frame) {
         this.frame = frame;
     }
     

@@ -6,7 +6,7 @@ import demineur.model.Grid;
 import demineur.model.Cell;
 import demineur.view.GraphicalCellView;
 import demineur.view.GraphicalGridView;
-import demineur.view.endGameFrame;
+import demineur.view.EndGameFrame;
 
 public class GameControls {
 
@@ -29,28 +29,30 @@ public class GameControls {
         }
     }
 
-    public static void leftClick(Cell cell, GraphicalGridView grid) {
-        if (grid.getModel().isFristClick()) {
-            grid.getModel().setMines();
-            grid.getModel().setFristClick(false);
+    public static void leftClick(Cell cell, GraphicalGridView gridView) {
+        if (gridView.getModel().isFristClick()) {
+            gridView.getModel().setMines();
+            gridView.getModel().setFristClick(false);
         }
         if (cell.getEtatRevealed() == EtatRevealed.MINE) {
             //Loose process
             cell.setShown(true);
-            grid.getFrame().dispose();
-            endGameFrame endFrame = new endGameFrame("Perdu :(");
+            gridView.getMyTimer().stop();
+            gridView.getFrame().dispose();           
+            EndGameFrame endFrame = new EndGameFrame("Perdu :(",gridView.getTimerValue());
         } else {
             cell.setShown(true);
-            grid.getModel().incNbClick();
-            if (!checkWin(grid.getModel())) {
+            gridView.getModel().incNbClick();
+            if (!checkWin(gridView.getModel())) {
                 if (cell.getEtatMasked() == EtatMasked.EXMARK) {
-                    grid.getModel().setNbMarkedCells(grid.getModel().getNbMarkedCells() - 1);
+                    gridView.getModel().setNbMarkedCells(gridView.getModel().getNbMarkedCells() - 1);
                 }
-                recursiveReveal(cell, grid);
+                recursiveReveal(cell, gridView);
             } else {
                 //Win process
-                grid.getFrame().dispose();
-                endGameFrame endFrame = new endGameFrame("Gagné :)");
+                gridView.getMyTimer().stop();
+                gridView.getFrame().dispose();
+                EndGameFrame endFrame = new EndGameFrame("Gagné :)",gridView.getTimerValue());
             }
 
         }
@@ -127,8 +129,9 @@ public class GameControls {
                 grid.setNbMarkedCells(grid.getNbMarkedCells() + 1);
                 if (checkWin(grid)) {
                     //win process
+                    gridView.getMyTimer().stop();
                     gridView.getFrame().dispose();
-                    endGameFrame endFrame = new endGameFrame("Gagné :)");
+                    EndGameFrame endFrame = new EndGameFrame("Gagné :)",gridView.getTimerValue());
                 }
             }
         } else if (button.getMyModel().getEtatMasked() == EtatMasked.EXMARK) {

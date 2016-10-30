@@ -9,9 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-public class endGameFrame extends JFrame {
-
-    public endGameFrame(String message) throws HeadlessException {
+public class EndGameFrame extends JFrame {
+    
+    public EndGameFrame(String message,int Score) throws HeadlessException {
             JPanel mainPanel = new JPanel();
             JPanel topPanel = new JPanel();
             JButton replay = new JButton("Replay");
@@ -23,7 +23,12 @@ public class endGameFrame extends JFrame {
             mainPanel.add(topPanel);
             
             JLabel label = new JLabel(message);
-            topPanel.add(label,BorderLayout.CENTER);
+            JLabel score = new JLabel("Score :" + Integer.toString(Score));
+            JLabel voidLabel = new JLabel("                       ");
+            
+            topPanel.add(label,BorderLayout.WEST);
+            topPanel.add(voidLabel,BorderLayout.CENTER);
+            topPanel.add(score,BorderLayout.EAST);
                     
             mainPanel.setLayout(new BorderLayout());
             mainPanel.add(topPanel,BorderLayout.NORTH);
@@ -32,7 +37,7 @@ public class endGameFrame extends JFrame {
             replay.addMouseListener(new MyEndGameListener(this));
             quit.addMouseListener(new MyEndGameListener(this));
             
-            this.setSize(300,150);
+            this.setSize(500,150);
             this.setBounds(500,300,300,150);
             this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             this.setVisible(true);

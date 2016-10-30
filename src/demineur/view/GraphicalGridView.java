@@ -18,9 +18,11 @@ public class GraphicalGridView extends JPanel {
     private Grid model;
     private GraphicalCellView JCells[][];
     private Timer myTimer;
+    private int timerValue;
     StatusBar statusBar;
     JFrame frame = new JFrame("Demineur");
     
+    //GETTERS & SETTERS --------------------------------------------------------
     @Override
     public int getWidth() {
         return width;
@@ -66,8 +68,24 @@ public class GraphicalGridView extends JPanel {
     public JFrame getFrame() {
         return frame;
     }
+
+    public Timer getMyTimer() {
+        return myTimer;
+    }
+
+    public void setMyTimer(Timer myTimer) {
+        this.myTimer = myTimer;
+    }
+
+    public int getTimerValue() {
+        return timerValue;
+    }
+
+    public void setTimerValue(int timerValue) {
+        this.timerValue = timerValue;
+    }
     
-    
+    //GETTERS & SETTERS --------------------------------------------------------
 
     public GraphicalGridView(Grid model) {
         this.model = model;
@@ -82,7 +100,7 @@ public class GraphicalGridView extends JPanel {
         south.setLayout(new BorderLayout(5,5));
         
         JLabel timer = new JLabel("Time: 0");
-        myTimer = new Timer(1000, new MyTimerActionListener(timer));
+        myTimer = new Timer(1000, new MyTimerActionListener(timer,this));
         myTimer.start();
         
         //Add a menu selector
@@ -106,8 +124,8 @@ public class GraphicalGridView extends JPanel {
         frame.add(south,BorderLayout.SOUTH);
 
         this.addMouseListener(new MyMouseListener(this));
-       
-        frame.setSize(width * 65, height * 55);
+        
+        frame.setSize(this.width * 80, this.width * 55);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
         
